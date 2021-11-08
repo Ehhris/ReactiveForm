@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center"  color="light">Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <br><br><br><br><br><br><br><br><br><br>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <form [formGroup]="profileForm" (ngSubmit)="submit()">
+          <ion-item lines="full">
+            <ion-label position="floating">First name</ion-label>
+            <ion-input formControlName="Fname" type="text" required></ion-input>
+          </ion-item>
+          <div *ngFor="let error of errorMessages.Fname">
+            <ng-container *ngIf="Fname.hasError(error.type) && (Fname.dirty || Fname.touched)">
+              <small class="error-message">{{error.message}}</small>
+            </ng-container>
+          </div>
+      
+          <ion-item lines="full">
+            <ion-label position="floating">Last name</ion-label>
+            <ion-input formControlName="Lname" type="text" required></ion-input>
+          </ion-item>
+          <div *ngFor="let error of errorMessages.Lname">
+            <ng-container *ngIf="Lname.hasError(error.type) && (Lname.dirty || Lname.touched)">
+              <small class="error-message">{{error.message}}</small>
+            </ng-container>
+          </div>
+      
+          <ion-item lines="full">
+            <ion-label position="floating">Email</ion-label>
+            <ion-input formControlName="email" type="text" required></ion-input>
+          </ion-item>
+          <div *ngFor="let error of errorMessages.email">
+            <ng-container *ngIf="email.hasError(error.type) && (email.dirty || email.touched)">
+              <small class="error-message">{{error.message}}</small>
+            </ng-container>
+          </div>
+      
+          <ion-item lines="full">
+            <ion-label position="floating">Password</ion-label>
+            <ion-input formControlName="password" type="password" required></ion-input>
+          </ion-item>
+          <div *ngFor="let error of errorMessages.password">
+            <ng-container *ngIf="password.hasError(error.type) && (password.dirty || password.touched)">
+              <small class="error-message">{{error.message}}</small>
+            </ng-container>
+          </div>
+      
+          <ion-row>
+            <ion-col>
+              <ion-button [disabled]="!profileForm.valid" size="large" type="submit" color="danger" expand="block">Update</ion-button>
+            </ion-col>
+          </ion-row>
+        </form>
+      </ion-col>
+    </ion-row>
+    <ion-row></ion-row>
+  </ion-grid>
+</ion-content>
